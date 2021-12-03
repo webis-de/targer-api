@@ -23,7 +23,7 @@ def fetch_arguments(
         cache_dir.mkdir(parents=True, exist_ok=True)
 
     arguments: Dict[str, TargerArgumentSentences] = {
-        model: _fetch_sentences(api_url, model, text, cache_dir)
+        model: _fetch_sentences(text, model, api_url, cache_dir)
         for model in models
     }
     return arguments
