@@ -1,6 +1,6 @@
 # 🗣️ targer-api
 
-Simple, type-safe access to the TARGER neural argument tagging APIs.
+Simple, type-safe access to the [TARGER](https://github.com/webis-de/targer/) neural argument tagging APIs.
 
 ## Installation
 
