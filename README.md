@@ -1,3 +1,9 @@
+[![CI](https://img.shields.io/github/workflow/status/heinrichreimer/targer-api/CI?style=flat-square)](https://github.com/heinrichreimer/targer-api/actions?query=workflow%3A"CI")
+[![Code coverage](https://img.shields.io/codecov/c/github/heinrichreimer/targer-api?style=flat-square)](https://codecov.io/github/heinrichreimer/targer-api/)
+[![Issues](https://img.shields.io/github/issues/heinrichreimer/targer-api?style=flat-square)](https://github.com/heinrichreimer/targer-api/issues)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/heinrichreimer/targer-api?style=flat-square)](https://github.com/heinrichreimer/targer-api/commits)
+[![License](https://img.shields.io/github/license/heinrichreimer/targer-api?style=flat-square)](LICENSE)
+
 # 🗣️ targer-api
 
 Simple, type-safe access to the [TARGER](https://github.com/webis-de/targer/) neural argument tagging APIs.
