@@ -11,7 +11,7 @@ Simple, type-safe access to the [TARGER](https://github.com/webis-de/targer/) ne
 ## Installation
 
 ```shell
-pip install git+https://github.com/heinrichreimer/targer-api.git
+pip install git+https://github.com/heinrichreimer/targer-api.git#egg=targer-api
 ```
 
 ## Usage
