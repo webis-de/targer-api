@@ -44,6 +44,43 @@ You can use the following BibTeX information for citation:
 }
 ```
 
+## Development
+
+To build and develop this package you need to install the `build` package:
+```shell
+pip install build
+```
+
+### Installation
+
+Install package dependencies:
+```shell
+pip install -e .
+```
+
+### Testing
+
+Install test dependencies:
+```shell
+pip install -e .[test]
+```
+
+Verify your changes against the test suite to verify.
+```shell
+flake8 targer examples
+pylint -E targer examples
+pytest targer examples
+```
+
+Please also add tests for the axioms or integrations you've added.
+
+### Build wheel
+
+A wheel for this package can be built by:
+```shell
+python -m build
+```
+
 ## License
 
 This repository is released under the [MIT license](LICENSE).
