@@ -22,11 +22,11 @@ pip install targer-api
 ```python
 from targer.api import fetch_arguments
 
-arguments = fetch_arguments("""
-Suicide should be a criminal offence. 
-It is suspected that Francis committed suicide having been 
-faced with being murdered over his large debt to Johnny Boy.
-""")
+arguments = fetch_arguments(
+    "The alternative vote is advantageous. "
+    "The President is directly elected by secret ballot "
+    "under the system of the Alternative Vote."
+)
 print(arguments)
 ```
 
