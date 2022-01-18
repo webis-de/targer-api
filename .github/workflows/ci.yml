@@ -20,7 +20,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
       - name: "🧰 Install Python"
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
           cache: pip
@@ -50,7 +50,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
       - name: "🧰 Install Python"
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
           cache: pip
@@ -79,7 +79,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
       - name: "🧰 Install Python"
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
           cache: pip
@@ -108,7 +108,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
       - name: "🧰 Install Python"
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
           cache: pip
@@ -118,9 +118,7 @@ jobs:
           pip install -e .
           pip install -e .[test]
       - name: "🧪 Test Python code"
-        run: pytest targer examples
-      - name: "🧪 Compute test coverage"
-        run: pytest --cov --cov-report=term --cov-report=xml || true
+        run: pytest targer examples --cov --cov-report=term --cov-report=xml
       - name: "📤 Upload test coverage"
         uses: actions/upload-artifact@v2
         with:
@@ -140,7 +138,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
       - name: "🧰 Install Python"
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: 3.9
           cache: pip
@@ -170,7 +168,7 @@ jobs:
         id: get-version
         run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
       - name: "🧰 Install Python"
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: 3.9
           cache: pip
