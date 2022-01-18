@@ -24,6 +24,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: pip
+          cache-dependency-path: setup.cfg
       - name: "🧰 Install dependencies"
         run: |
           python -m pip install --upgrade pip build twine
@@ -54,6 +55,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: pip
+          cache-dependency-path: setup.cfg
       - name: "🧰 Install dependencies"
         run: |
           python -m pip install --upgrade pip
@@ -83,6 +85,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: pip
+          cache-dependency-path: setup.cfg
       - name: "🧰 Install dependencies"
         run: |
           python -m pip install --upgrade pip
@@ -112,6 +115,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: pip
+          cache-dependency-path: setup.cfg
       - name: "🧰 Install dependencies"
         run: |
           python -m pip install --upgrade pip
@@ -142,6 +146,7 @@ jobs:
         with:
           python-version: 3.9
           cache: pip
+          cache-dependency-path: setup.cfg
       - name: "🧰 Install dependencies"
         run: |
           python -m pip install --upgrade pip build
@@ -172,6 +177,7 @@ jobs:
         with:
           python-version: 3.9
           cache: pip
+          cache-dependency-path: setup.cfg
       - name: "🧰 Install dependencies"
         run: |
           python -m pip install --upgrade pip build
