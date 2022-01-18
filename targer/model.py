@@ -4,7 +4,7 @@ from math import nan
 from typing import List
 
 
-class TargerArgumentLabel(Enum):
+class ArgumentLabel(Enum):
     C_B = "C-B"
     C_I = "C-I"
     MC_B = "MC-B"
@@ -24,33 +24,33 @@ class TargerArgumentLabel(Enum):
 
 
 @dataclass
-class TargerArgumentTag:
-    label: TargerArgumentLabel
+class ArgumentTag:
+    label: ArgumentLabel
     probability: float
     token: str
 
     @classmethod
     def from_json(cls, json):
         return cls(
-            TargerArgumentLabel.from_json(json["label"]),
+            ArgumentLabel.from_json(json["label"]),
             float(json["prob"]) if "prob" in json else nan,
             str(json["token"])
         )
 
 
-class TargerArgumentSentence(List[TargerArgumentTag]):
+class ArgumentSentence(List[ArgumentTag]):
     @classmethod
     def from_json(cls, json):
         return cls(
-            TargerArgumentTag.from_json(tag)
+            ArgumentTag.from_json(tag)
             for tag in json
         )
 
 
-class TargerArgumentSentences(List[TargerArgumentSentence]):
+class ArgumentSentences(List[ArgumentSentence]):
     @classmethod
-    def from_json(cls, json) -> "TargerArgumentSentences":
+    def from_json(cls, json) -> "ArgumentSentences":
         return cls(
-            TargerArgumentSentence.from_json(sentence)
+            ArgumentSentence.from_json(sentence)
             for sentence in json
         )

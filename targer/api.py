@@ -7,7 +7,7 @@ from typing import Optional, Set
 from requests import Response, post
 
 from targer.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
-from targer.model import TargerArgumentSentences
+from targer.model import ArgumentSentences
 
 
 def fetch_arguments(
@@ -15,14 +15,14 @@ def fetch_arguments(
         models: Set[str] = None,
         api_url: str = DEFAULT_TARGER_API_URL,
         cache_dir: Optional[Path] = None,
-) -> Dict[str, TargerArgumentSentences]:
+) -> Dict[str, ArgumentSentences]:
     if models is None:
         models = DEFAULT_TARGER_MODELS
 
     if cache_dir is not None:
         cache_dir.mkdir(parents=True, exist_ok=True)
 
-    arguments: Dict[str, TargerArgumentSentences] = {
+    arguments: Dict[str, ArgumentSentences] = {
         model: _fetch_sentences(text, model, api_url, cache_dir)
         for model in models
     }
@@ -34,7 +34,7 @@ def _fetch_sentences(
         model: str,
         api_url: str = DEFAULT_TARGER_API_URL,
         cache_dir: Optional[Path] = None,
-) -> TargerArgumentSentences:
+) -> ArgumentSentences:
     content_hash: str = md5(text.encode()).hexdigest()
     cache_file = cache_dir / model / f"{content_hash}.json" \
         if cache_dir is not None \
@@ -44,7 +44,7 @@ def _fetch_sentences(
     if cache_file is not None and cache_file.exists() and cache_file.is_file():
         with cache_file.open("r") as file:
             json = loads(file.read())
-            return TargerArgumentSentences.from_json(json)
+            return ArgumentSentences.from_json(json)
 
     headers = {
         "Accept": "application/json",
@@ -63,4 +63,4 @@ def _fetch_sentences(
         with cache_file.open("wb") as file:
             file.write(res.content)
 
-    return TargerArgumentSentences.from_json(json)
+    return ArgumentSentences.from_json(json)
