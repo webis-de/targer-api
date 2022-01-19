@@ -4,6 +4,7 @@ from pytest import approx
 from pytest import fixture
 
 from targer.api import fetch_arguments
+from targer.constants import DEFAULT_TARGER_MODELS
 from targer.model import (
     ArgumentSentence, ArgumentSentences, ArgumentTag, ArgumentLabel
 )
@@ -67,3 +68,11 @@ def test_fetch_arguments(
     assert sentence2_token2.label == ArgumentLabel.P_B
     assert sentence2_token2.probability == approx(0.9999801)
     assert sentence2_token2.token == "President"
+
+
+def test_fetch_arguments_default(
+        text: str,
+        cache_dir: Path,
+):
+    arguments = fetch_arguments(text, cache_dir=cache_dir)
+    assert DEFAULT_TARGER_MODELS == set(arguments.keys())
