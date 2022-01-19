@@ -12,13 +12,10 @@ from targer.model import ArgumentSentences
 
 def fetch_arguments(
         text: str,
-        models: Set[str] = None,
+        models: Set[str] = DEFAULT_TARGER_MODELS,
         api_url: str = DEFAULT_TARGER_API_URL,
         cache_dir: Optional[Path] = None,
 ) -> Dict[str, ArgumentSentences]:
-    if models is None:
-        models = DEFAULT_TARGER_MODELS
-
     if cache_dir is not None:
         cache_dir.mkdir(parents=True, exist_ok=True)
 
