@@ -10,7 +10,7 @@ from targer_api.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
 from targer_api.model import ArgumentSentences
 
 
-def fetch_arguments(
+def analyze_text(
         text: str,
         models: Set[str] = DEFAULT_TARGER_MODELS,
         api_url: str = DEFAULT_TARGER_API_URL,

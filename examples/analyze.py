@@ -1,6 +1,6 @@
-from targer_api.api import fetch_arguments
+from targer_api.api import analyze_text
 
-arguments = fetch_arguments(
+arguments = analyze_text(
     "Academic freedom is not absolute. "
     "All major Canadian universities are now publicly funded "
     "but maintain institutional autonomy, "

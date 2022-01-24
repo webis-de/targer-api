@@ -3,7 +3,7 @@ from pytest import approx
 
 from pytest import fixture
 
-from targer_api.api import fetch_arguments
+from targer_api.api import analyze_text
 from targer_api.constants import DEFAULT_TARGER_MODELS
 from targer_api.model import (
     ArgumentSentence, ArgumentSentences, ArgumentTag, ArgumentLabel
@@ -40,7 +40,7 @@ def test_fetch_arguments(
         api_url: str,
         cache_dir: Path,
 ):
-    arguments = fetch_arguments(text, {model}, api_url, cache_dir)
+    arguments = analyze_text(text, {model}, api_url, cache_dir)
 
     assert len(arguments) == 1
     assert model in arguments.keys()
@@ -74,5 +74,5 @@ def test_fetch_arguments_default(
         text: str,
         cache_dir: Path,
 ):
-    arguments = fetch_arguments(text, cache_dir=cache_dir)
+    arguments = analyze_text(text, cache_dir=cache_dir)
     assert DEFAULT_TARGER_MODELS == set(arguments.keys())
