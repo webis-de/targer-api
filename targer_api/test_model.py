@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from targer.model import (
+from targer_api.model import (
     ArgumentLabel, ArgumentTag, ArgumentSentence, ArgumentSentences
 )
 

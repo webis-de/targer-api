@@ -6,8 +6,8 @@ from typing import Optional, Set
 
 from requests import Response, post
 
-from targer.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
-from targer.model import ArgumentSentences
+from targer_api.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
+from targer_api.model import ArgumentSentences
 
 
 def fetch_arguments(

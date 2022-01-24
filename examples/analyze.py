@@ -1,4 +1,4 @@
-from targer.api import fetch_arguments
+from targer_api.api import fetch_arguments
 
 arguments = fetch_arguments(
     "Academic freedom is not absolute. "

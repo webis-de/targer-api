@@ -3,9 +3,9 @@ from pytest import approx
 
 from pytest import fixture
 
-from targer.api import fetch_arguments
-from targer.constants import DEFAULT_TARGER_MODELS
-from targer.model import (
+from targer_api.api import fetch_arguments
+from targer_api.constants import DEFAULT_TARGER_MODELS
+from targer_api.model import (
     ArgumentSentence, ArgumentSentences, ArgumentTag, ArgumentLabel
 )
 
