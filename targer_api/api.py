@@ -1,16 +1,60 @@
 from hashlib import md5
 from json import loads
 from pathlib import Path
-from typing import Optional, Set
+from typing import Optional, Set, overload, Union
 
 from requests import Response, post
 
-from targer_api.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
+from targer_api.constants import (
+    DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODEL, DEFAULT_TARGER_MODELS
+)
 from targer_api.model import ArgumentSentences, ArgumentModelSentences
 from targer_api.parse import parse_argument_sentences
 
 
+@overload
 def analyze_text(
+        text: str,
+        model: str = DEFAULT_TARGER_MODEL,
+        api_url: str = DEFAULT_TARGER_API_URL,
+        cache_dir: Optional[Path] = None,
+) -> ArgumentSentences:
+    pass
+
+
+@overload
+def analyze_text(
+        text: str,
+        models: Set[str],
+        api_url: str = DEFAULT_TARGER_API_URL,
+        cache_dir: Optional[Path] = None,
+) -> ArgumentModelSentences:
+    pass
+
+
+def analyze_text(
+        text: str,
+        model_or_models: Union[str, Set[str]] = DEFAULT_TARGER_MODEL,
+        api_url: str = DEFAULT_TARGER_API_URL,
+        cache_dir: Optional[Path] = None,
+) -> Union[ArgumentSentences, ArgumentModelSentences]:
+    if isinstance(model_or_models, str):
+        return _fetch_sentences_single(
+            text=text,
+            model=model_or_models,
+            api_url=api_url,
+            cache_dir=cache_dir,
+        )
+    else:
+        return _fetch_sentences_multi(
+            text=text,
+            models=model_or_models,
+            api_url=api_url,
+            cache_dir=cache_dir,
+        )
+
+
+def _fetch_sentences_multi(
         text: str,
         models: Set[str] = DEFAULT_TARGER_MODELS,
         api_url: str = DEFAULT_TARGER_API_URL,
@@ -20,20 +64,25 @@ def analyze_text(
         cache_dir.mkdir(parents=True, exist_ok=True)
 
     arguments: ArgumentModelSentences = {
-        model: _fetch_sentences(text, model, api_url, cache_dir)
+        model: _fetch_sentences_single(
+            text=text,
+            model=model,
+            api_url=api_url,
+            cache_dir=cache_dir / model,
+        )
         for model in models
     }
     return arguments
 
 
-def _fetch_sentences(
+def _fetch_sentences_single(
         text: str,
-        model: str,
+        model: str = DEFAULT_TARGER_MODEL,
         api_url: str = DEFAULT_TARGER_API_URL,
         cache_dir: Optional[Path] = None,
 ) -> ArgumentSentences:
     content_hash: str = md5(text.encode()).hexdigest()
-    cache_file = cache_dir / model / f"{content_hash}.json" \
+    cache_file = cache_dir / f"{content_hash}.json" \
         if cache_dir is not None \
         else None
 
