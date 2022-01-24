@@ -1,13 +1,12 @@
 from hashlib import md5
 from json import loads
 from pathlib import Path
-from typing import Dict
 from typing import Optional, Set
 
 from requests import Response, post
 
 from targer_api.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
-from targer_api.model import ArgumentSentences
+from targer_api.model import ArgumentSentences, ArgumentModelSentences
 from targer_api.parse import parse_argument_sentences
 
 
@@ -16,11 +15,11 @@ def analyze_text(
         models: Set[str] = DEFAULT_TARGER_MODELS,
         api_url: str = DEFAULT_TARGER_API_URL,
         cache_dir: Optional[Path] = None,
-) -> Dict[str, ArgumentSentences]:
+) -> ArgumentModelSentences:
     if cache_dir is not None:
         cache_dir.mkdir(parents=True, exist_ok=True)
 
-    arguments: Dict[str, ArgumentSentences] = {
+    arguments: ArgumentModelSentences = {
         model: _fetch_sentences(text, model, api_url, cache_dir)
         for model in models
     }

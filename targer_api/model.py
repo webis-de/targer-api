@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import List
+from typing import List, Dict
 
 
 class ArgumentLabel(Enum):
@@ -28,3 +28,5 @@ class ArgumentTag:
 ArgumentSentence = List[ArgumentTag]
 
 ArgumentSentences = List[ArgumentSentence]
+
+ArgumentModelSentences = Dict[str, ArgumentSentence]
