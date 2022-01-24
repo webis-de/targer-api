@@ -3,6 +3,10 @@ from pytest import fixture
 from targer_api.model import (
     ArgumentLabel, ArgumentTag, ArgumentSentence, ArgumentSentences
 )
+from targer_api.parse import (
+    parse_argument_label, parse_argument_tag, parse_argument_sentence,
+    parse_argument_sentences
+)
 
 
 @fixture
@@ -19,7 +23,7 @@ def test_argument_label_json(
         argument_label: ArgumentLabel,
         argument_label_json,
 ):
-    parsed_argument_label = ArgumentLabel.from_json(argument_label_json)
+    parsed_argument_label = parse_argument_label(argument_label_json)
     assert isinstance(parsed_argument_label, ArgumentLabel)
     assert parsed_argument_label == argument_label
 
@@ -42,7 +46,7 @@ def test_argument_tag_json(
         argument_tag: ArgumentTag,
         argument_tag_json
 ):
-    parsed_argument_tag = ArgumentTag.from_json(argument_tag_json)
+    parsed_argument_tag = parse_argument_tag(argument_tag_json)
     assert isinstance(parsed_argument_tag, ArgumentTag)
     assert parsed_argument_tag == argument_tag
 
@@ -61,7 +65,7 @@ def test_argument_sentence_json(
         argument_sentence: ArgumentSentence,
         argument_sentence_json
 ):
-    parsed_argument_sentence = ArgumentSentence.from_json(
+    parsed_argument_sentence = parse_argument_sentence(
         argument_sentence_json
     )
     assert isinstance(parsed_argument_sentence, ArgumentSentence)
@@ -84,7 +88,7 @@ def test_argument_sentences_json(
         argument_sentences: ArgumentSentences,
         argument_sentences_json
 ):
-    parsed_argument_sentences = ArgumentSentences.from_json(
+    parsed_argument_sentences = parse_argument_sentences(
         argument_sentences_json
     )
     assert isinstance(parsed_argument_sentences, ArgumentSentences)

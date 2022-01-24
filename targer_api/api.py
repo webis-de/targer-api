@@ -8,6 +8,7 @@ from requests import Response, post
 
 from targer_api.constants import DEFAULT_TARGER_API_URL, DEFAULT_TARGER_MODELS
 from targer_api.model import ArgumentSentences
+from targer_api.parse import parse_argument_sentences
 
 
 def analyze_text(
@@ -41,7 +42,7 @@ def _fetch_sentences(
     if cache_file is not None and cache_file.exists() and cache_file.is_file():
         with cache_file.open("r") as file:
             json = loads(file.read())
-            return ArgumentSentences.from_json(json)
+            return parse_argument_sentences(json)
 
     headers = {
         "Accept": "application/json",
@@ -60,4 +61,4 @@ def _fetch_sentences(
         with cache_file.open("wb") as file:
             file.write(res.content)
 
-    return ArgumentSentences.from_json(json)
+    return parse_argument_sentences(json)

@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-from math import nan
 from typing import List
 
 
@@ -18,10 +17,6 @@ class ArgumentLabel(Enum):
     B_I = "B-I"
     X = "-X-"
 
-    @classmethod
-    def from_json(cls, json):
-        return cls(str(json))
-
 
 @dataclass
 class ArgumentTag:
@@ -29,28 +24,7 @@ class ArgumentTag:
     probability: float
     token: str
 
-    @classmethod
-    def from_json(cls, json):
-        return cls(
-            ArgumentLabel.from_json(json["label"]),
-            float(json["prob"]) if "prob" in json else nan,
-            str(json["token"])
-        )
 
+ArgumentSentence = List[ArgumentTag]
 
-class ArgumentSentence(List[ArgumentTag]):
-    @classmethod
-    def from_json(cls, json):
-        return cls(
-            ArgumentTag.from_json(tag)
-            for tag in json
-        )
-
-
-class ArgumentSentences(List[ArgumentSentence]):
-    @classmethod
-    def from_json(cls, json) -> "ArgumentSentences":
-        return cls(
-            ArgumentSentence.from_json(sentence)
-            for sentence in json
-        )
+ArgumentSentences = List[ArgumentSentence]
