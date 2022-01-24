@@ -1,11 +1,11 @@
 [![PyPi](https://img.shields.io/pypi/v/targer-api?style=flat-square)](https://pypi.org/project/targer-api/)
-[![CI](https://img.shields.io/github/workflow/status/heinrichreimer/targer-api/CI?style=flat-square)](https://github.com/heinrichreimer/targer-api/actions?query=workflow%3A"CI")
-[![Code coverage](https://img.shields.io/codecov/c/github/heinrichreimer/targer-api?style=flat-square)](https://codecov.io/github/heinrichreimer/targer-api/)
+[![CI](https://img.shields.io/github/workflow/status/webis-de/targer-api/CI?style=flat-square)](https://github.com/webis-de/targer-api/actions?query=workflow%3A"CI")
+[![Code coverage](https://img.shields.io/codecov/c/github/webis-de/targer-api?style=flat-square)](https://codecov.io/github/webis-de/targer-api/)
 [![Python](https://img.shields.io/pypi/pyversions/targer-api?style=flat-square)](https://pypi.org/project/targer-api/)
-[![Issues](https://img.shields.io/github/issues/heinrichreimer/targer-api?style=flat-square)](https://github.com/heinrichreimer/targer-api/issues)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/heinrichreimer/targer-api?style=flat-square)](https://github.com/heinrichreimer/targer-api/commits)
+[![Issues](https://img.shields.io/github/issues/webis-de/targer-api?style=flat-square)](https://github.com/webis-de/targer-api/issues)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/webis-de/targer-api?style=flat-square)](https://github.com/webis-de/targer-api/commits)
 [![Downloads](https://img.shields.io/pypi/dm/targer-api?style=flat-square)](https://pypi.org/project/targer-api/)
-[![License](https://img.shields.io/github/license/heinrichreimer/targer-api?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/webis-de/targer-api?style=flat-square)](LICENSE)
 
 # 🗣️ targer-api
 
