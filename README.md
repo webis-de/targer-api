@@ -11,6 +11,12 @@
 
 Simple, type-safe access to the [TARGER](https://github.com/webis-de/targer/) neural argument tagging APIs.
 
+With this package you can analyze the argumentative structures 
+using one of the pre-trained neural models for argument mining 
+found in the [TARGER API](https://demo.webis.de/targer-api/apidocs/).
+The API is hosted by the [Webis research group](https://webis.de/) 
+and free to use.
+
 ## Installation
 
 ```shell
