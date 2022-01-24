@@ -1,13 +1,9 @@
 from pathlib import Path
 from typing import List
 
-from pytest import approx
-from pytest import fixture
+from pytest import approx, fixture
 
-from targer_api.api import analyze_text
-from targer_api.model import (
-    ArgumentSentence, ArgumentSentences, ArgumentTag, ArgumentLabel
-)
+from targer_api import analyze_text, ArgumentTag, ArgumentLabel
 
 
 @fixture

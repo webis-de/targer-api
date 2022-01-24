@@ -2,7 +2,7 @@ from typing import List
 
 from pytest import fixture
 
-from targer_api.model import (
+from targer_api import (
     ArgumentLabel, ArgumentTag, ArgumentSentence, ArgumentSentences
 )
 
