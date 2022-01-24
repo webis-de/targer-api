@@ -75,9 +75,9 @@ pip install -e .[test]
 
 Verify your changes against the test suite to verify.
 ```shell
-flake8 targer_api examples
-pylint -E targer_api examples
-pytest targer_api examples
+flake8 targer_api examples tests
+pylint -E targer_api examples tests
+pytest targer_api examples tests
 ```
 
 Please also add tests for the axioms or integrations you've added.

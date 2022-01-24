@@ -1,3 +1,5 @@
+from typing import List
+
 from pytest import fixture
 
 from targer_api.model import (
@@ -24,7 +26,7 @@ def test_argument_tag(argument_tag: ArgumentTag):
 
 @fixture
 def argument_sentence(argument_tag: ArgumentTag) -> ArgumentSentence:
-    return ArgumentSentence([argument_tag])
+    return [argument_tag]
 
 
 def test_argument_sentence(argument_sentence: ArgumentSentence):
@@ -34,10 +36,11 @@ def test_argument_sentence(argument_sentence: ArgumentSentence):
 
 @fixture
 def argument_sentences(
-        argument_sentence: ArgumentSentence) -> ArgumentSentences:
-    return ArgumentSentences([argument_sentence])
+        argument_sentence: ArgumentSentence
+) -> ArgumentSentences:
+    return [argument_sentence]
 
 
 def test_argument_sentences(argument_sentences: ArgumentSentences):
     assert len(argument_sentences) == 1
-    assert isinstance(argument_sentences[0], ArgumentSentence)
+    assert isinstance(argument_sentences[0], List)

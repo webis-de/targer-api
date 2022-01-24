@@ -1,10 +1,10 @@
 from pathlib import Path
-from pytest import approx
+from typing import List
 
+from pytest import approx
 from pytest import fixture
 
 from targer_api.api import analyze_text
-from targer_api.constants import DEFAULT_TARGER_MODELS
 from targer_api.model import (
     ArgumentSentence, ArgumentSentences, ArgumentTag, ArgumentLabel
 )
@@ -34,25 +34,21 @@ def cache_dir(tmp_path: Path) -> Path:
     return tmp_path
 
 
-def test_fetch_arguments(
+def test_fetch_arguments_single(
         text: str,
         model: str,
         api_url: str,
         cache_dir: Path,
 ):
-    arguments = analyze_text(text, {model}, api_url, cache_dir)
+    sentences = analyze_text(text, model, api_url, cache_dir)
 
-    assert len(arguments) == 1
-    assert model in arguments.keys()
-
-    sentences = arguments[model]
-    assert isinstance(sentences, ArgumentSentences)
+    assert isinstance(sentences, List)
     assert len(sentences) == 2
 
     sentence1, sentence2 = sentences
-    assert isinstance(sentence1, ArgumentSentence)
+    assert isinstance(sentence1, List)
     assert len(sentence1) == 6
-    assert isinstance(sentence2, ArgumentSentence)
+    assert isinstance(sentence2, List)
     assert len(sentence2) == 16
 
     sentence1_token2 = sentence1[1]
@@ -70,9 +66,37 @@ def test_fetch_arguments(
     assert sentence2_token2.token == "President"
 
 
-def test_fetch_arguments_default(
+def test_fetch_arguments_multi(
         text: str,
+        model: str,
+        api_url: str,
         cache_dir: Path,
 ):
-    arguments = analyze_text(text, cache_dir=cache_dir)
-    assert DEFAULT_TARGER_MODELS == set(arguments.keys())
+    model_sentences = analyze_text(text, {model}, api_url, cache_dir)
+
+    assert len(model_sentences) == 1
+    assert model in model_sentences.keys()
+
+    sentences = model_sentences[model]
+    assert isinstance(sentences, List)
+    assert len(sentences) == 2
+
+    sentence1, sentence2 = sentences
+    assert isinstance(sentence1, List)
+    assert len(sentence1) == 6
+    assert isinstance(sentence2, List)
+    assert len(sentence2) == 16
+
+    sentence1_token2 = sentence1[1]
+    assert isinstance(sentence1_token2, ArgumentTag)
+    assert isinstance(sentence1_token2.label, ArgumentLabel)
+    assert sentence1_token2.label == ArgumentLabel.C_B
+    assert sentence1_token2.probability == approx(0.6908648)
+    assert sentence1_token2.token == "alternative"
+
+    sentence2_token2 = sentence2[1]
+    assert isinstance(sentence2_token2, ArgumentTag)
+    assert isinstance(sentence2_token2.label, ArgumentLabel)
+    assert sentence2_token2.label == ArgumentLabel.P_B
+    assert sentence2_token2.probability == approx(0.9999801)
+    assert sentence2_token2.token == "President"

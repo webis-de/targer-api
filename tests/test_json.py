@@ -1,3 +1,5 @@
+from typing import List
+
 from pytest import fixture
 
 from targer_api.model import (
@@ -53,7 +55,7 @@ def test_argument_tag_json(
 
 @fixture
 def argument_sentence(argument_tag: ArgumentTag) -> ArgumentSentence:
-    return ArgumentSentence([argument_tag])
+    return [argument_tag]
 
 
 @fixture
@@ -68,7 +70,7 @@ def test_argument_sentence_json(
     parsed_argument_sentence = parse_argument_sentence(
         argument_sentence_json
     )
-    assert isinstance(parsed_argument_sentence, ArgumentSentence)
+    assert isinstance(parsed_argument_sentence, List)
     assert parsed_argument_sentence == argument_sentence
 
 
@@ -76,7 +78,7 @@ def test_argument_sentence_json(
 def argument_sentences(
         argument_sentence: ArgumentSentence
 ) -> ArgumentSentences:
-    return ArgumentSentences([argument_sentence])
+    return [argument_sentence]
 
 
 @fixture
@@ -91,5 +93,5 @@ def test_argument_sentences_json(
     parsed_argument_sentences = parse_argument_sentences(
         argument_sentences_json
     )
-    assert isinstance(parsed_argument_sentences, ArgumentSentences)
+    assert isinstance(parsed_argument_sentences, List)
     assert parsed_argument_sentences == argument_sentences
