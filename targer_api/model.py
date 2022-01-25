@@ -29,4 +29,4 @@ ArgumentSentence = List[ArgumentTag]
 
 ArgumentSentences = List[ArgumentSentence]
 
-ArgumentModelSentences = Dict[str, ArgumentSentence]
+ArgumentModelSentences = Dict[str, ArgumentSentences]
