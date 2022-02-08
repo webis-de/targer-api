@@ -1,8 +1,8 @@
 from hashlib import md5
-from json import loads
 from pathlib import Path
 from typing import Optional, Set, overload, Union
 
+from diskcache import Cache
 from requests import Response, post
 
 from targer_api.constants import (
@@ -68,7 +68,11 @@ def _fetch_sentences_multi(
             text=text,
             model=model,
             api_url=api_url,
-            cache_dir=cache_dir / model,
+            cache_dir=(
+                cache_dir / model
+                if cache_dir is not None
+                else None
+            ),
         )
         for model in models
     }
@@ -81,16 +85,12 @@ def _fetch_sentences_single(
         api_url: str = DEFAULT_TARGER_API_URL,
         cache_dir: Optional[Path] = None,
 ) -> ArgumentSentences:
-    content_hash: str = md5(text.encode()).hexdigest()
-    cache_file = cache_dir / f"{content_hash}.json" \
-        if cache_dir is not None \
-        else None
+    cache_key = md5(text.encode()).hexdigest()
+    cache = Cache(str(cache_dir.absolute())) if cache_dir is not None else None
 
     # Check if the API response is found in the cache.
-    if cache_file is not None and cache_file.exists() and cache_file.is_file():
-        with cache_file.open("r") as file:
-            json = loads(file.read())
-            return parse_argument_sentences(json)
+    if cache is not None and cache_key in cache:
+        return cache[cache_key]
 
     headers = {
         "Accept": "application/json",
@@ -103,10 +103,10 @@ def _fetch_sentences_single(
     )
     json = res.json()
 
-    # Cache the API response.
-    if cache_file is not None:
-        cache_file.parent.mkdir(exist_ok=True)
-        with cache_file.open("wb") as file:
-            file.write(res.content)
+    argument_sentences = parse_argument_sentences(json)
 
-    return parse_argument_sentences(json)
+    # Cache the API response.
+    if cache is not None:
+        cache[cache_key] = argument_sentences
+
+    return argument_sentences
