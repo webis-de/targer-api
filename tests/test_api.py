@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 from pytest import approx, fixture
 
@@ -25,16 +25,19 @@ def api_url() -> str:
     return "https://demo.webis.de/targer-api/"
 
 
-@fixture
-def cache_dir(tmp_path: Path) -> Path:
-    return tmp_path
+@fixture(params=[True, False])
+def cache_dir(tmp_path: Path, request) -> Optional[Path]:
+    if request.param:
+        return tmp_path
+    else:
+        return None
 
 
 def test_fetch_arguments_single(
         text: str,
         model: str,
         api_url: str,
-        cache_dir: Path,
+        cache_dir: Optional[Path],
 ):
     sentences = analyze_text(text, model, api_url, cache_dir)
 
@@ -66,7 +69,7 @@ def test_fetch_arguments_multi(
         text: str,
         model: str,
         api_url: str,
-        cache_dir: Path,
+        cache_dir: Optional[Path],
 ):
     model_sentences = analyze_text(text, {model}, api_url, cache_dir)
 
