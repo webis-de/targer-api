@@ -108,5 +108,6 @@ def _fetch_sentences_single(
     # Cache the API response.
     if cache is not None:
         cache[cache_key] = argument_sentences
+        cache.close()
 
     return argument_sentences
