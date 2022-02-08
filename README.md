@@ -26,9 +26,9 @@ pip install targer-api
 ## Usage
 
 ```python
-from targer.api import fetch_arguments
+from targer_api import analyze_text
 
-arguments = fetch_arguments(
+arguments = analyze_text(
     "The alternative vote is advantageous. "
     "The President is directly elected by secret ballot "
     "under the system of the Alternative Vote."
