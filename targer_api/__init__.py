@@ -1,4 +1,4 @@
-__version__ = "1.0.5"
+__version__ = "1.1.0"
 
 from targer_api import api, model
 
