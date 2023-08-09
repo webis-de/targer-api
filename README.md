@@ -1,5 +1,5 @@
 [![PyPi](https://img.shields.io/pypi/v/targer-api?style=flat-square)](https://pypi.org/project/targer-api/)
-[![CI](https://img.shields.io/github/workflow/status/webis-de/targer-api/CI?style=flat-square)](https://github.com/webis-de/targer-api/actions?query=workflow%3A"CI")
+[![CI](https://img.shields.io/github/actions/workflow/status/webis-de/targer-api/ci.yml?branch=main&style=flat-square)](https://github.com/webis-de/targer-api/actions/workflows/ci.yml)
 [![Code coverage](https://img.shields.io/codecov/c/github/webis-de/targer-api?style=flat-square)](https://codecov.io/github/webis-de/targer-api/)
 [![Python](https://img.shields.io/pypi/pyversions/targer-api?style=flat-square)](https://pypi.org/project/targer-api/)
 [![Issues](https://img.shields.io/github/issues/webis-de/targer-api?style=flat-square)](https://github.com/webis-de/targer-api/issues)
@@ -81,9 +81,9 @@ pip install -e .[test]
 
 Verify your changes against the test suite to verify.
 ```shell
-flake8 targer_api examples tests
-pylint -E targer_api examples tests
-pytest targer_api examples tests
+flake8 targer_api tests examples
+pylint -E targer_api tests examples
+pytest targer_api tests examples
 ```
 
 Please also add tests for the axioms or integrations you've added.
