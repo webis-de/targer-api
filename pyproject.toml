@@ -20,7 +20,7 @@ classifiers = [
 ]
 dependencies = [
     "diskcache~=5.4",
-    "importlib-metadata~=6.8",
+    "importlib-metadata>=6.8,<8.0",
     "requests~=2.26",
 ]
 dynamic = ["version"]
