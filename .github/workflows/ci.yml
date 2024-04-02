@@ -108,7 +108,6 @@ jobs:
       uses: codecov/codecov-action@v4
       if: matrix.python == '3.11'
       with:
-        fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
   python-publish:
     name: "🚀 Publish Python wheels"
